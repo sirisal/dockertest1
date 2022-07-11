@@ -35,7 +35,7 @@ pipeline {
             }   
             stage('Run the Application') {
                 steps {
-                sh "docker run --rm -dit -name sudheer -p 101:80 0807as/somu:v$BUILD_NUMBER" 
+                sh "docker run --rm -dit --name sudheer -p 101:80 0807as/somu:v$BUILD_NUMBER" 
                 sh "docker ps"
             } 
             }       
