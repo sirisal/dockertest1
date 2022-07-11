@@ -31,8 +31,8 @@ pipeline {
             stage('Push an image to docker hub') {
                 steps {
                     script { 
-                       sudo docker.withRegistry( '',registryCredential ) {
-                            dockerImage.push("0807as/somu:v$BUILD_NUMBER")
+                            docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push(v$BUILD_NUMBER")
             } 
                 }
             }
