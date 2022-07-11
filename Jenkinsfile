@@ -1,8 +1,5 @@
 pipeline {
 
-    environment {
-     registryCredential = 'dockercred'   
-    }
     agent {
          label 'docker'
     }
@@ -36,6 +33,5 @@ pipeline {
             }    
             } 
             }            
-            }
     }
 }
