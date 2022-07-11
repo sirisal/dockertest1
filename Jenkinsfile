@@ -1,4 +1,8 @@
 pipeline {
+
+    environment {
+     registryCredential = 'dockercred'   
+    }
     agent {
          label 'docker'
     }
@@ -21,13 +25,16 @@ pipeline {
             }
             stage('Build an image using docker file') {
                 steps {
-                    sh 'sudo docker build -t 0807as/somu:$BUILD_NUMBER .'
+                    sh 'sudo docker build -t 0807as/somu:v$BUILD_NUMBER .'
                 }
             }
-            stage('Restart the NGINX Sever') {
+            stage('Push an image to docker hub') {
                 steps {
-                    sh 'sudo systemctl restart nginx'
-                    sh 'sudo systemctl status nginx'
+                    script { 
+                        docker.withRegistry( '',registryCredential ) {
+                            dockerImage.push("BUILD_NUMBER)
+                            dockerImage.push('latest')
+            } 
                 }
             }
             stage('Verifying The Deployment') {
