@@ -18,6 +18,7 @@ pipeline {
                 }
             }
         }
+    }
             stage('Cloning our Git') {
                 steps {
                     git 'https://github.com/somu1679/dockertest1.git'
@@ -37,10 +38,5 @@ pipeline {
             } 
                 }
             }
-            stage('Verifying The Deployment') {
-                steps {
-                    sh 'ls /var/www/html/'
-                }
             }
-    }
 }
