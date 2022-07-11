@@ -27,8 +27,8 @@ pipeline {
             }
             stage('Push an image to docker hub') {
                 steps {
-                withCredentials([string(credentialsId: 'cred', variable: 'docker')]) {
-                sh "docker login -u 0807as -p ${docker}"
+                withCredentials([string(credentialsId: 'pass', variable: 'cred')]) {
+                sh "docker login -u 0807as -p ${cred}"
                 sh "docker push 0807as/somu:v$BUILD_NUMBER"
             }    
             } 
