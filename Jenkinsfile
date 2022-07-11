@@ -32,8 +32,7 @@ pipeline {
                 steps {
                     script { 
                        sudo docker.withRegistry( '',registryCredential ) {
-                            dockerImage.push("$BUILD_NUMBER")
-                            dockerImage.push('latest')
+                            dockerImage.push("0807as/somu:v$BUILD_NUMBER")
             } 
                 }
             }
