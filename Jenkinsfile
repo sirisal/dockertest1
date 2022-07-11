@@ -19,9 +19,9 @@ pipeline {
                     git 'https://github.com/somu1679/dockertest1.git'
                 }
             }
-            stage('Copy the Index FIles to Nginx Html Folder') {
+            stage('Build an image using docker file') {
                 steps {
-                    sh 'sudo cp /var/lib/jenkins/workspace/sample-pipeline/*.* /var/www/html/'
+                    sh 'sudo docker build -t 0807as/somu:$BUILD_NUMBER .'
                 }
             }
             stage('Restart the NGINX Sever') {
