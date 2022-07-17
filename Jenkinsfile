@@ -27,6 +27,7 @@ pipeline {
             stage('Build an image using docker file') {
                 steps {
                     sh 'sudo docker build -t 0807as/somu:v$BUILD_NUMBER .'
+                    sh 'echo "$OLD"'
                 }
             }
             stage('Push an image to docker hub') {
@@ -37,16 +38,16 @@ pipeline {
             }    
             } 
             } 
-            stage('Remove the Existing Containers') {
-                steps {
-                    script {
+            #stage('Remove the Existing Containers') {
+             #   steps {
+              #      script {
                        
-                       if ( -n "$OLD" ) 
-                       docker stop $OLD && docker rm $OLD
+               #        if ( -n "$OLD" ) 
+                #       docker stop $OLD && docker rm $OLD
                         
-                    }  
-                }
-            }
+                 #   }  
+            #    }
+           # }
             stage('Run the Application') {
                 steps {
                 sh "docker run --rm -dit --name sudheer -p 89:80 0807as/somu:v$BUILD_NUMBER" 
