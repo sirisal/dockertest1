@@ -32,7 +32,12 @@ pipeline {
                 sh "docker push 0807as/somu:v$BUILD_NUMBER"
             }    
             } 
-            }   
+            } 
+            stage('Remove the Existing Containers') {
+                steps {
+                    sh 'sudo docker rm -f $(docker ps -a -q)'
+                }
+            }
             stage('Run the Application') {
                 steps {
                 sh "docker run --rm -dit --name sudheer -p 89:80 0807as/somu:v$BUILD_NUMBER" 
