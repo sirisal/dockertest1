@@ -40,6 +40,7 @@ pipeline {
             } 
              stage('Remove the Existing Containers') {
                 steps {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh (returnStdout: true, script: '''#!/bin/bash
                        
                         if [ -n "$OLD" ]; then 
@@ -48,8 +49,7 @@ pipeline {
                            echo "no containers found"
                            fi
                            '''.stripIndent())
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
-                      
+                    }
                 }
            }
             stage('Run the Application') {
