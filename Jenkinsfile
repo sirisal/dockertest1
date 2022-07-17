@@ -37,9 +37,7 @@ pipeline {
                 steps {
                     sh 'CONTAINER_NAME="sudheer"'
                     sh 'OLD="$(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"'
-                    sh 'if [ -n "$OLD" ]; then
-                        docker stop $OLD && docker rm $OLD
-                        fi'
+                    sh 'if [ -n "$OLD" ]; then docker stop $OLD && docker rm $OLD fi'
                 }
             }
             stage('Run the Application') {
