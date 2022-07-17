@@ -35,7 +35,7 @@ pipeline {
             } 
             stage('Remove the Existing Containers') {
                 steps {
-                    sh 'sudo docker rm -f $(docker ps -a -q)'
+                    sh 'sudo docker rm -f $(docker ps -a)'
                 }
             }
             stage('Run the Application') {
