@@ -35,7 +35,11 @@ pipeline {
             } 
             stage('Remove the Existing Containers') {
                 steps {
-                    sh 'sudo docker rm -f $(docker ps -a)'
+                    sh 'CONTAINER_NAME="sudheer"
+                        OLD="$(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"
+                        if [ -n "$OLD" ]; then
+                        docker stop $OLD && docker rm $OLD
+                        fi'
                 }
             }
             stage('Run the Application') {
