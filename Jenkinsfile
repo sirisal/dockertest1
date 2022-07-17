@@ -38,16 +38,16 @@ pipeline {
             }    
             } 
             } 
-            // stage('Remove the Existing Containers') {
-             //   steps {
-              //      script {
+             stage('Remove the Existing Containers') {
+                steps {
+                    script {
                        
-               //        if ( -n "$OLD" ) 
-                //       docker stop $OLD && docker rm $OLD
+                       if ( -n "$OLD" ) 
+                       docker stop $OLD && docker rm $OLD
                         
-                 //   }  
-            //    }
-          // }
+                    }  
+                }
+           }
             stage('Run the Application') {
                 steps {
                 sh "docker run --rm -dit --name sudheer -p 80:80 0807as/somu:v$BUILD_NUMBER" 
