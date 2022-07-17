@@ -42,9 +42,9 @@ pipeline {
                 steps {
                     script {
                        
-                       if ( -n "$OLD" ) 
+                        if ( -n "$OLD" ) {
                        docker stop $OLD && docker rm $OLD
-                        
+                        }
                     }  
                 }
            }
