@@ -35,9 +35,9 @@ pipeline {
             } 
             stage('Remove the Existing Containers') {
                 steps {
-                    sh 'CONTAINER_NAME="sudheer"
-                        OLD="$(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"
-                        if [ -n "$OLD" ]; then
+                    sh 'CONTAINER_NAME="sudheer"'
+                    sh 'OLD="$(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"'
+                    sh 'if [ -n "$OLD" ]; then
                         docker stop $OLD && docker rm $OLD
                         fi'
                 }
