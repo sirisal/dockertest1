@@ -48,6 +48,7 @@ pipeline {
                            echo "no containers found"
                            fi
                            '''.stripIndent())
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
                       
                 }
            }
