@@ -42,9 +42,11 @@ pipeline {
                 steps {
                     script {
                        
-                        if "(-n '$OLD')" {
+                        if [ -n "$OLD" ]; then 
                        docker stop $OLD && docker rm $OLD
-                        }
+                       else 
+                           echo "no containers found"
+                           fi   
                     }  
                 }
            }
