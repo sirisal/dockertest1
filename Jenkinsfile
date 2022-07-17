@@ -40,14 +40,15 @@ pipeline {
             } 
              stage('Remove the Existing Containers') {
                 steps {
-                    script {
+                    sh (returnStdout: true, script: '''#!/bin/bash
                        
                         if [ -n "$OLD" ]; then 
                        docker stop $OLD && docker rm $OLD
                        else 
                            echo "no containers found"
-                           fi   
-                    }  
+                           fi
+                           '''.stripIndent())
+                      
                 }
            }
             stage('Run the Application') {
