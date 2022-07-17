@@ -3,6 +3,10 @@ pipeline {
     agent {
          label 'docker'
     }
+    environment {
+        CONTAINER_NAME = "sudheer"
+        OLD = "$(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"
+    }
 
     stages {
         stage ('Prompt for input') {
@@ -36,8 +40,7 @@ pipeline {
             stage('Remove the Existing Containers') {
                 steps {
                     script {
-                       CONTAINER_NAME="sudheer"
-                       OLD="$(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"
+                       
                        if ( -n "$OLD" ) 
                        docker stop $OLD && docker rm $OLD
                         
