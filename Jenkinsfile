@@ -43,7 +43,7 @@ pipeline {
                     sh (returnStdout: true, script: '''#!/bin/bash
                        
                         if [ -n "$OLD" ]; then 
-                       docker stop $OLD && docker rm $OLD
+                       docker stop "$OLD" && docker rm "$OLD"
                        else 
                            echo "no containers found"
                            fi
