@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         CONTAINER_NAME = "sudheer"
-        OLD = "(docker ps --all --quiet --filter=name="$CONTAINER_NAME")"
+        OLD = "(docker ps --all --quiet --filter = name = "$CONTAINER_NAME")"
     }
 
     stages {
